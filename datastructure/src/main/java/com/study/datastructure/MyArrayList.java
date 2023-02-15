@@ -100,9 +100,9 @@ public class MyArrayList<T> {
 
         System.out.println(myArrayList.toString());
 
-        myArrayList.add(1, "끼기");
-        myArrayList.add(1, "두번째끼기");
-        myArrayList.add(1, "세번째끼기");
+        myArrayList.add(1, "2");
+        myArrayList.add(1, "arraylist");
+        myArrayList.add(1, "감사합니다");
 
         System.out.println(myArrayList.toString());
 
