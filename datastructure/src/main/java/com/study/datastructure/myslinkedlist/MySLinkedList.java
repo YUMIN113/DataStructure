@@ -191,12 +191,25 @@ public class MySLinkedList<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public void clear() {
 
+        Node<E> temp = head;
+
+        while(temp != null) {
+
+            Node<E> next_Node = temp.next;
+
+            temp.data = null;
+            temp.next = null;
+
+            temp = next_Node;
+        }
+        head = tail = null;
+        size = 0;
     }
 
     public String toString() {
@@ -234,6 +247,11 @@ public class MySLinkedList<E> implements List<E> {
         System.out.println(mySLinkedList.toString());
 
         System.out.println(mySLinkedList.contains("넷"));
+
+        mySLinkedList.clear();
+        System.out.println(mySLinkedList.toString());
+        System.out.println(mySLinkedList.size());
+
 
 //        System.out.println(mySLinkedList.toString());
 //
