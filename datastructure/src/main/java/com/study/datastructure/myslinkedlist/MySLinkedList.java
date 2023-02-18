@@ -148,6 +148,48 @@ public class MySLinkedList<E> implements List<E> {
     @Override
     public boolean remove(Object value) {
 
+        Node<E> temp = head;
+        Node<E> prev_Node = head;
+        boolean hasValue = false;
+
+        // 동일한 data 가 있는지 조회, 있다면, hasValue = true;
+        while (temp != null) {
+            if(value.equals(temp.data)) {
+                hasValue = true;
+                break;
+            }
+            prev_Node = temp;
+            temp = temp.next;
+        }
+
+        // 동일한 data 가 있다면, 해당 로직 실행
+        while (hasValue) {
+
+                if(value.equals(head.data)) {
+                    remove();
+                    return true;
+                }
+
+                if(value.equals(tail.data)) {
+                    prev_Node.next = null;
+                    tail = prev_Node;
+                    break;
+                }
+
+                prev_Node.next = temp.next;
+                break;
+
+            }
+
+
+        if(hasValue == false) {
+            return false;
+        }
+
+        temp.data = null;
+        temp.next = null;
+        size--;
+
         return true;
     }
 
@@ -246,17 +288,15 @@ public class MySLinkedList<E> implements List<E> {
 
         System.out.println(mySLinkedList.toString());
 
-        System.out.println(mySLinkedList.contains("넷"));
+        System.out.println(mySLinkedList.remove("하나"));
 
-        mySLinkedList.clear();
         System.out.println(mySLinkedList.toString());
+
+        System.out.println(mySLinkedList.remove("넷"));
+
+        System.out.println(mySLinkedList.toString());
+
         System.out.println(mySLinkedList.size());
 
-
-//        System.out.println(mySLinkedList.toString());
-//
-//        System.out.println(mySLinkedList.size);
     }
-
-
 }
