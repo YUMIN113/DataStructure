@@ -121,6 +121,35 @@ public class MyArrayQueue<E> implements Queue<E> {
        return item;
     }
 
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean contains(Object value) {
+
+        int start = (front +1) % arr.length;
+
+        for(int i = 0, idx = start; i < size; i++, idx = (idx + 1) % arr.length) {
+            if(arr[idx].equals(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void clear() {
+
+        for(int i = 0; i < arr.length; i++) {
+            arr[i] = null;
+        }
+
+        front = rear = size = 0;
+    }
+
     @Override
     public String toString() {
 
@@ -131,8 +160,10 @@ public class MyArrayQueue<E> implements Queue<E> {
             return String.valueOf(sb);
         }
 
-        for(int i = 0; i <= rear; i++) {
-            sb.append(arr[i]);
+        int start = (front + 1) % arr.length;
+
+        for(int i = 0, idx = start; i < size; i++, idx = (idx + 1) % arr.length) {
+            sb.append(arr[idx]);
             sb.append("\t");
         }
 
@@ -141,9 +172,13 @@ public class MyArrayQueue<E> implements Queue<E> {
 
     public static void main(String[] args) {
 
-        MyArrayQueue<Integer> myArrayQueue = new MyArrayQueue<>(3);
+        MyArrayQueue<Integer> myArrayQueue = new MyArrayQueue<>(4);
 
-        System.out.println(myArrayQueue.poll());
+        myArrayQueue.offer(1);
+        myArrayQueue.offer(2);
+        System.out.println(myArrayQueue.toString());
 
+        myArrayQueue.poll();
+        
     }
 }
