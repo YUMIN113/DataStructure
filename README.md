@@ -2,7 +2,7 @@
 자료구조 학습
 
 1. [Stack](https://github.com/YUMIN113/DataStructure/blob/main/datastructure/src/main/java/com/study/datastructure/MyStack.java)
-2. [ArrayQueue](https://github.com/YUMIN113/DataStructure/tree/main/datastructure/src/main/java/com/study/datastructure/myQueue)
+2. [ArrayQueue](https://github.com/YUMIN113/DataStructure/tree/main/datastructure/src/main/java/com/study/datastructure/myqueue/myarrayqueue)
 - Circular Queue 구조 이용
 - front 와 rear 변수 선언
 - front 는 항상 '0'. 따라서 'front == rear' 라면 Queue 는 비어있는 상태
