@@ -1,4 +1,6 @@
-package com.study.datastructure.myQueue;
+package com.study.datastructure.myqueue.myarrayqueue;
+
+import com.study.datastructure.myqueue.Queue;
 
 import java.util.NoSuchElementException;
 
@@ -179,6 +181,6 @@ public class MyArrayQueue<E> implements Queue<E> {
         System.out.println(myArrayQueue.toString());
 
         myArrayQueue.poll();
-        
+
     }
 }

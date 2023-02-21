@@ -1,4 +1,4 @@
-package com.study.datastructure.myQueue;
+package com.study.datastructure.myqueue;
 
 public interface Queue<E> {
 
