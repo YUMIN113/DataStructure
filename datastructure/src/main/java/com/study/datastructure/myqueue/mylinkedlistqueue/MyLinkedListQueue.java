@@ -2,6 +2,7 @@ package com.study.datastructure.myqueue.mylinkedlistqueue;
 
 import com.study.datastructure.myqueue.Queue;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
@@ -119,10 +120,54 @@ public class MyLinkedListQueue<E> implements Queue<E> {
         head = tail = null;
     }
 
+    public Object[] toArray() {
+
+        Object[] arr = new Object[size];
+
+        int i = 0;
+
+        for(Node<E> temp = head; temp != null; temp = temp.next) {
+            arr[i++] = temp.data;
+        }
+        return arr;
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+        if(size == 0) {
+            return "[]";
+        }
+
+        for(Node<E> temp = head; temp != null; temp = temp.next) {
+            sb.append(temp.data + " ");
+        }
+        return String.valueOf(sb);
+    }
+
     public static void main(String[] args) {
 
         MyLinkedListQueue<Integer> myLinkedListQueue = new MyLinkedListQueue<>();
 
         myLinkedListQueue.offer(0);
+        myLinkedListQueue.offer(1);
+        myLinkedListQueue.offer(2);
+        myLinkedListQueue.offer(3);
+
+        System.out.println(myLinkedListQueue.toString());
+
+        // toArray() Test
+        StringBuilder sb = new StringBuilder();
+
+        Object[] arr = myLinkedListQueue.toArray();
+
+        for(Object val : arr) {
+            sb.append(String.valueOf(val) + " ");
+        }
+
+        System.out.println(sb);
+        
     }
 }
