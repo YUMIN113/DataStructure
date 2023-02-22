@@ -1,8 +1,9 @@
 package com.study.datastructure.myslinkedlist;
 
+import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
-public class MySLinkedList<E> implements List<E> {
+public class MySLinkedList<E> implements List<E>, Cloneable {
 
     private Node<E> head; // 노드의 첫 부분
 
@@ -252,6 +253,56 @@ public class MySLinkedList<E> implements List<E> {
         }
         head = tail = null;
         size = 0;
+    }
+
+
+    public Object clone() throws CloneNotSupportedException {
+
+        MySLinkedList<E> clone = (MySLinkedList<E>) super.clone(); // Deep Copy, 새로운 변수 생성
+
+        clone.head = null;
+        clone.tail = null;
+        clone.size = 0;
+
+        for(Node<E> temp = head; temp != null; temp = temp.next) {
+            clone.addLast(temp.data);
+        }
+        return clone;
+    }
+
+    public Object[] toArray() {
+
+        Object[] arr = new Object[size];
+
+        int i = 0;
+
+        for(Node<E> temp = head; temp != null; temp = temp.next) {
+            arr[i++] = temp.data;
+        }
+        return arr;
+    }
+
+    // 특정 타입의 배열을 돌려받기 위한 toArray(T[] a)
+    @SuppressWarnings("unchedcked")
+    public <T> T[] toArray(T[] a) {
+
+        // 제네릭 타입. 타입 미정. reflection 사용하여 배열 생성
+        // 배열을 다시 생성해야 하는 상황인데, T 타입으로는 배열을 생성할 수 없다.
+        if(a.length < size) {
+            a = (T[]) Array.newInstance(a.getClass().getComponentType(), size);
+        }
+
+        // a.length < size 인 경우, 새로운 배열을 생성해야 한다.
+        // a.length > size 인 경우, 원래 배열을 사용한다.
+
+        Object[] arr = a; // 어떤 타입의 데이터도 담을 수 있기 때문에 Object 로 배열 생성
+
+        int i = 0;
+
+        for(Node<E> temp = head; temp != null; temp = temp.next) {
+            arr[i++] = temp.data;
+        }
+        return (T[]) arr;
     }
 
     public String toString() {
