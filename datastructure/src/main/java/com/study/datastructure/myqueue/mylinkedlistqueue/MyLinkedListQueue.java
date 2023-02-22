@@ -168,6 +168,6 @@ public class MyLinkedListQueue<E> implements Queue<E> {
         }
 
         System.out.println(sb);
-        
+
     }
 }
