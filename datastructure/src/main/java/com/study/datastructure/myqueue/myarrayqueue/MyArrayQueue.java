@@ -79,6 +79,9 @@ public class MyArrayQueue<E> implements Queue<E> {
         arr[front] = null;
         size--;
 
+        // 효율성 제고
+        // 삭제 후, 데이터가 배열 길이의 1/4 보다 적게 차지한다면, 현재 배열 크기의 50% 로 축소
+        // 하지만 최소 DEFAULT_CAPACITY 크기는 유지
         if(arr.length > DEFAULT_CAPACITY && size < (arr.length / 4)) {
             resizeArr(Math.max(DEFAULT_CAPACITY, arr.length / 2));
         }
