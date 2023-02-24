@@ -1,4 +1,4 @@
-package com.study.datastructure;
+package com.study.datastructure.mystack;
 
 public class MyStack<T> {
 
