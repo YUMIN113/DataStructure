@@ -1,4 +1,4 @@
-package com.study.datastructure.myslinkedlist;
+package com.study.datastructure.mylinkedlist.mysinglylinkedlist;
 
 
 public interface List<E> {

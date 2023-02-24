@@ -1,4 +1,4 @@
-package com.study.datastructure.myslinkedlist;
+package com.study.datastructure.mylinkedlist.mysinglylinkedlist;
 
 import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
