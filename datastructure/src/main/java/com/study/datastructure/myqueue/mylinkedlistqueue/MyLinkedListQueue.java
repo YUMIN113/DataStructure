@@ -1,9 +1,8 @@
 package com.study.datastructure.myqueue.mylinkedlistqueue;
 
-import com.study.datastructure.myqueue.Queue;
+import com.study.datastructure.interface_form.Queue;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
