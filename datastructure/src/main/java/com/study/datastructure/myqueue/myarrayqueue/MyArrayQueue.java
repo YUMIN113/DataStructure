@@ -1,6 +1,6 @@
 package com.study.datastructure.myqueue.myarrayqueue;
 
-import com.study.datastructure.myqueue.Queue;
+import com.study.datastructure.interface_form.Queue;
 
 import java.util.NoSuchElementException;
 
