@@ -1,4 +1,4 @@
-package com.study.datastructure.mylinkedlist.mysinglylinkedlist;
+package com.study.datastructure.interface_form;
 
 
 public interface List<E> {

@@ -1,4 +1,4 @@
-package com.study.datastructure.myqueue;
+package com.study.datastructure.interface_form;
 
 public interface Queue<E> {
 
