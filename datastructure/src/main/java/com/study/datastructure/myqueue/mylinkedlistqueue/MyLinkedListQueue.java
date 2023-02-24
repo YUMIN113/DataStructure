@@ -2,11 +2,12 @@ package com.study.datastructure.myqueue.mylinkedlistqueue;
 
 import com.study.datastructure.myqueue.Queue;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
-public class MyLinkedListQueue<E> implements Queue<E> {
+public class MyLinkedListQueue<E> implements Queue<E>, Cloneable {
 
     private Node<E> head;
     private Node<E> tail;
@@ -132,6 +133,41 @@ public class MyLinkedListQueue<E> implements Queue<E> {
         return arr;
     }
 
+    public <T> T[] toArray(T[] a) {
+
+        if(a.length < size) {
+            a = (T[]) Array.newInstance(a.getClass().getComponentType(), size);
+        }
+
+        Object[] arr = a;
+
+            int i = 0;
+
+            for(Node<E> temp = head; temp != null; temp = temp.next) {
+
+                arr[i++] = temp.data;
+            }
+            return (T[]) arr;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+
+        MyLinkedListQueue<E> clone = (MyLinkedListQueue<E>) super.clone();
+
+        clone.head = null;
+        clone.tail = null;
+        clone.size = 0;
+
+        Node<E> temp = head;
+
+        while(temp != null) {
+            clone.offer(temp.data);
+            temp = temp.next;
+        }
+        return clone;
+    }
+
+
     @Override
     public String toString() {
 
@@ -147,7 +183,7 @@ public class MyLinkedListQueue<E> implements Queue<E> {
         return String.valueOf(sb);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
 
         MyLinkedListQueue<Integer> myLinkedListQueue = new MyLinkedListQueue<>();
 
@@ -158,16 +194,50 @@ public class MyLinkedListQueue<E> implements Queue<E> {
 
         System.out.println(myLinkedListQueue.toString());
 
-        // toArray() Test
+        // toArray(T[] a) Test
+        Integer[] a = new Integer[10];
+
+        Integer[] arr = myLinkedListQueue.toArray(a);
+
         StringBuilder sb = new StringBuilder();
 
-        Object[] arr = myLinkedListQueue.toArray();
-
-        for(Object val : arr) {
-            sb.append(String.valueOf(val) + " ");
+        for(int i = 0; i < arr.length; i++) {
+            sb.append(arr[i] + " ");
         }
 
         System.out.println(sb);
+
+        System.out.println(arr.length);
+
+
+
+        // clone() Test
+        MyLinkedListQueue<Integer> clone = (MyLinkedListQueue<Integer>) myLinkedListQueue.clone();
+
+        System.out.println(clone.toString());
+
+
+
+        // Shallow Copy , Deep Copy Test
+        MyLinkedListQueue<Integer> original = new MyLinkedListQueue<>();
+
+        original.offer(10);
+        original.offer(20);
+
+        MyLinkedListQueue<Integer> copy = original; // Shallow Copy
+
+        MyLinkedListQueue<Integer> deepClone = (MyLinkedListQueue<Integer>) original.clone(); // Deep Copy
+
+        copy.offer(30);
+        deepClone.offer(40);
+
+        System.out.println("==== Shallow Copy , Deep Copy ====");
+        System.out.println(copy.toString());
+        System.out.println(deepClone.toString());
+        System.out.println(original.toString());
+
+        // Shallow Copy 로 인해 copy 에 값을 추가하면 original 도 변경된다.(original 에도 영향을 준다.)
+        // 하지만, Deep Copy 는 deepClone 에 값을 추가해도 original 에 영향을 주지 않는다.
 
     }
 }
