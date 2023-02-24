@@ -1,4 +1,4 @@
-package com.study.datastructure;
+package com.study.datastructure.myarraylist;
 
 public class MyArrayList<T> {
 
