@@ -23,7 +23,7 @@ public class MyDoublyLinkedList<E> implements List<E> {
 
         Node<E> searchNode;
 
-        // size 가 후위 연산이기 때문에 index == size 에는 Node 가 없기 때문에 조회할 수 없다.
+        // size 가 후위 연산이기 때문에 index == size 에는 Node 가 없어 조회할 수 없다.
         if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
@@ -181,7 +181,7 @@ public class MyDoublyLinkedList<E> implements List<E> {
         Node<E> next_Node = removedNode.next;
 
         E removedData = removedNode.data;
-        
+
         prev_Node.next = null;
 
         // 삭제할 Node 데이타 모두 삭제
