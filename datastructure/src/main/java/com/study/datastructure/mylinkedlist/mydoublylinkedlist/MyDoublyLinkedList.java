@@ -66,7 +66,7 @@ public class MyDoublyLinkedList<E> implements List<E> {
         size++;
 
         if(head.next == null) {
-            head = tail;
+            tail = head;
         }
     }
 
@@ -184,7 +184,7 @@ public class MyDoublyLinkedList<E> implements List<E> {
 
         prev_Node.next = null;
 
-        // 삭제할 Node 데이타 모두 삭제
+        // 삭제할 Node 데이터 모두 삭제
         removedNode.data = null;
         removedNode.prev = null;
         removedNode.next = null;
@@ -207,43 +207,173 @@ public class MyDoublyLinkedList<E> implements List<E> {
         return removedData;
     }
 
+
     @Override
     public boolean remove(Object value) {
+
+        Node<E> temp = head;
+
+        while (temp != null) {
+            if(temp.data.equals(value)) {
+
+                if (temp == head) {
+                    this.remove();
+                    return true;
+                }
+
+                Node<E> removedNode = temp;
+                Node<E> prev_Node = removedNode.prev;
+                Node<E> next_Node = removedNode.next;
+
+                prev_Node.next = null;
+
+                if (next_Node != null) {
+                    next_Node.prev = null;
+                    next_Node.prev = prev_Node;
+                    prev_Node.next = next_Node;
+                }
+
+                removedNode.data = null;
+                removedNode.prev = null;
+                removedNode.next = null;
+
+                if (next_Node == null) {
+                    tail = prev_Node;
+                }
+                size--;
+                return true;
+            }
+            temp = temp.next;
+        }
         return false;
     }
+
 
     @Override
     public E get(int index) {
-        return null;
+        return search(index).data;
     }
+
 
     @Override
     public void set(int index, E value) {
-
+        Node<E> replaceNode = search(index);
+        replaceNode.data = null;
+        replaceNode.data = value;
     }
+
+    // head 부터 탐색
+    @Override
+    public int indexOf(Object value) {
+
+        int index = 0;
+
+        for(Node<E> temp = head; temp != null; temp = temp.next) {
+            if (value.equals(temp.data)) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+
+
+    // tail 부터 탐색
+    public int lastIndexOf(Object value) {
+
+        int index = size;
+
+        for(Node<E> temp = tail; temp != null; temp = temp.prev) {
+            index--;
+            if (value.equals(temp.data)) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
 
     @Override
     public boolean contains(Object value) {
-        return false;
+        return indexOf(value) != -1;
     }
 
-    @Override
-    public int indexOf(Object value) {
-        return 0;
-    }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
+
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
+
 
     @Override
     public void clear() {
 
+        Node<E> temp = head;
+
+        while (temp != null) {
+
+            Node<E> next_Node = temp.next;
+
+            temp.data = null;
+            temp.prev = null;
+            temp.next = null;
+
+            temp = next_Node;
+
+        }
+        head = tail = null;
+        size = 0;
+    }
+
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+            Node<E> temp = head;
+
+            while (temp != null) {
+                sb.append(temp.data + " ");
+                temp = temp.next;
+            }
+
+        if (head == null) {
+            return "[]";
+        }
+
+        return "[" + sb + "]";
+    }
+
+
+    public static void main(String[] args) {
+
+        MyDoublyLinkedList<String> myDoublyLinkedList = new MyDoublyLinkedList<>();
+
+        myDoublyLinkedList.add("0");
+        System.out.println(myDoublyLinkedList.size);
+        myDoublyLinkedList.add("1");
+
+        myDoublyLinkedList.add(0, "2");
+
+        System.out.println(myDoublyLinkedList.toString());
+
+        System.out.println(myDoublyLinkedList.isEmpty());
+
+        System.out.println(myDoublyLinkedList.contains("1"));
+
+        System.out.println(myDoublyLinkedList.indexOf("1"));
+
+        myDoublyLinkedList.clear();
+
+        System.out.println(myDoublyLinkedList.toString());
+
+        System.out.println(myDoublyLinkedList.isEmpty());
     }
 }
