@@ -13,3 +13,5 @@
 4. [ArrayList](https://github.com/YUMIN113/DataStructure/tree/main/datastructure/src/main/java/com/study/datastructure/myarraylist)
 5. [SinglyLinkedList](https://github.com/YUMIN113/DataStructure/tree/main/datastructure/src/main/java/com/study/datastructure/mylinkedlist/mysinglylinkedlist)
 6. [DoublyLinkedList](https://github.com/YUMIN113/DataStructure/tree/main/datastructure/src/main/java/com/study/datastructure/mylinkedlist/mydoublylinkedlist)
+7. [ArrayDeque](https://github.com/YUMIN113/DataStructure/tree/main/datastructure/src/main/java/com/study/datastructure/mydeque/myarraydeque)
+- Circular Queue 구조 이용
